@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="112273c3-54a2-495a-b661-f36e02ce0c21" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../GoSessions/GoSessions.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HandsOn1/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HandsOn1/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HandsOn1/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HandsOn1/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HandsOn1/Day1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HandsOn1/Greetings/Greetings.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HandsOn1/ProblemStatement.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HandsOn1/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HandsOn1/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Conversions/Conversion.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HandsOn2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../goscapefiles/.idea/goscapefiles.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../goscapefiles/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../goscapefiles/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../goscapefiles/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../goscapefiles/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StudentGradeBook/Main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../StudentGradeBook/Main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StudentGradeBook/student/student.go" beforeDir="false" afterPath="$PROJECT_DIR$/../StudentGradeBook/student/student.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StudentGradeBook/student/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/../StudentGradeBook/student/utils.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file:///usr/local/opt/go/libexec" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="30apr1JXComw1JKQCEni3BKcQ8g" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Go Build.go build main.go.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/Users/techverito/GoProgramming/HandsOn2/main.go",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.27812.49" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.27812.49" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="112273c3-54a2-495a-b661-f36e02ce0c21" name="Changes" comment="" />
+      <created>1753875734173</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1753875734173</updated>
+      <workItem from="1753875735181" duration="1480000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>
