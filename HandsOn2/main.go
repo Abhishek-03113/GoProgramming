@@ -15,10 +15,10 @@ func main() {
 
 	// type safe conversions using float64
 	lengthInFeet := conv.Length(length)
-	temperatureInFarenhite := conv.Temperature(temperature)
+	temperatureInFahrenheit := conv.Temperature(temperature)
 	weightInPounds := conv.Weight(weight)
 
-	fmt.Printf("%.2f Celcius is %.2f Farenhite \n", temperature, temperatureInFarenhite)
+	fmt.Printf("%.2f Celcius is %.2f Farenhite \n", temperature, temperatureInFahrenheit)
 	fmt.Printf("%.2f Meters is %.2f Feet\n", length, lengthInFeet)
 	fmt.Printf("%.2f Kilograms is %.2f Pounds\n", weight, weightInPounds)
 

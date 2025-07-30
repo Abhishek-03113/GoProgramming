@@ -5,32 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="112273c3-54a2-495a-b661-f36e02ce0c21" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../GoSessions/GoSessions.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HandsOn1/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HandsOn1/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HandsOn1/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HandsOn1/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HandsOn1/Day1.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HandsOn1/Greetings/Greetings.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HandsOn1/ProblemStatement.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HandsOn1/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HandsOn1/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Conversions/Conversion.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HandsOn2.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../goscapefiles/.idea/goscapefiles.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../goscapefiles/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../goscapefiles/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../goscapefiles/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../goscapefiles/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StudentGradeBook/Main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../StudentGradeBook/Main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StudentGradeBook/student/student.go" beforeDir="false" afterPath="$PROJECT_DIR$/../StudentGradeBook/student/student.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StudentGradeBook/student/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/../StudentGradeBook/student/utils.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Conversions/testing.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HandsOn3/ReadMe.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HandsOn1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HandsOn1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HandsOn3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HandsOn3/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +77,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1753875734173</updated>
-      <workItem from="1753875735181" duration="1480000" />
+      <workItem from="1753875735181" duration="3693000" />
     </task>
     <servers />
   </component>
