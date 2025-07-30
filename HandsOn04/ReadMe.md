@@ -1,0 +1,4 @@
+📝 Problem Statement
+Create a Go program that models and displays contact information for three individuals. Each contact should have personal details such as name, email, age, height, and whether they are currently active. Store all contacts in a collection and display their full profile information in a clean, formatted layout.
+Your program should include a method that returns a formatted string summarizing the contact's basic profile, and another method that prints all relevant details to the console. Use appropriate struct design, visibility rules, and formatting conventions in line with Go best practices. Avoid using any loops or conditionals.
+The program should output each contact's profile in a structured and readable format.
