@@ -50,11 +50,30 @@ func main() {
 	contacts := []Contact.Contact{alice, bob, charlie, dave, emma}
 
 	fmt.Print("Contact List:\n")
-	for _, contact := range contacts {
-		contact.GetProfileSummary()
-		fmt.Print("\n")
-		contact.PrintProfile()
-		fmt.Print("\n")
-		fmt.Print("----------------------\n")
-	}
+	fmt.Printf("Total Contacts: %d\n", len(contacts))
+
+	alice.GetProfileSummary()
+	fmt.Println()
+	alice.PrintProfile()
+	fmt.Println("--------------------")
+
+	bob.GetProfileSummary()
+	fmt.Println()
+	bob.PrintProfile()
+	fmt.Println("--------------------")
+
+	charlie.GetProfileSummary()
+	fmt.Println()
+	charlie.PrintProfile()
+	fmt.Println("--------------------")
+
+	dave.GetProfileSummary()
+	fmt.Println()
+	dave.PrintProfile()
+	fmt.Println("--------------------")
+
+	emma.GetProfileSummary()
+	fmt.Println()
+	emma.PrintProfile()
+	fmt.Println("--------------------")
 }
