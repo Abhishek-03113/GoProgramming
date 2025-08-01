@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="69b0b3f3-6588-4fad-b3e7-a4286c8a06cc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../StudentGradeBook/Main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../StudentGradeBook/Main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StudentGradeBook/student/student.go" beforeDir="false" afterPath="$PROJECT_DIR$/../StudentGradeBook/student/student.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StudentGradeBook/student/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/../StudentGradeBook/student/utils.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HandsOn1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HandsOn1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HandsOn1/Greetings/Greetings.go" beforeDir="false" afterPath="$PROJECT_DIR$/../HandsOn1/Greetings/Greetings.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HandsOn1/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../HandsOn1/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HandsOn3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HandsOn3/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/goscapefiles.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/goscapefiles.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="GOROOT" url="file:///usr/local/opt/go/libexec" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="30aZj6NwzEceCTybbYpguLtRXeZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -24,8 +31,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Go Build.go build main.go.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
@@ -33,6 +42,10 @@
     "go.import.settings.migrated": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "last_opened_file_path": "/Users/techverito/GoProgramming/goscapefiles",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
@@ -40,6 +53,27 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="goscapefiles" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <kind />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
+      <module name="goscapefiles" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <kind />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -56,6 +90,7 @@
       <option name="presentableId" value="Default" />
       <updated>1753867775381</updated>
       <workItem from="1753867776506" duration="40000" />
+      <workItem from="1754033465259" duration="2213000" />
     </task>
     <servers />
   </component>

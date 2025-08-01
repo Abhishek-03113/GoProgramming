@@ -6,11 +6,11 @@ const (
 
 var greeting string = "Hello !! Nice to Meet You !! "
 
-func GreetingMessage(username string) string {
+func GreetingMessage(usernames ...string) string {
 
-	if len(username) > 0 {
-		return greeting + username
+	if len(usernames) > 0 {
+		return greeting + usernames[0]
 	}
-
 	return greeting + name
+
 }

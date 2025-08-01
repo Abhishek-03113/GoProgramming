@@ -17,8 +17,9 @@ func main() {
 	fmt.Println(greet.GreetingMessage(bob))
 	fmt.Println(greet.GreetingMessage(charlie))
 
-	fmt.Println()
+	names := []string{"Abhishek", "aditya", "parth", "rohan"}
+	fmt.Println(greet.GreetingMessage(names...))
 	fmt.Println("Greetings for default name ")
-	fmt.Println(greet.GreetingMessage(""))
+	fmt.Println(greet.GreetingMessage())
 
 }
