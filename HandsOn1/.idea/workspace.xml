@@ -5,12 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3e6552e-85ec-444b-99b0-6de798aff9c3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../HandsOn06/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HandsOn06/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HandsOn06/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HandsOn06/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HandsOn06/HandsOn06.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HandsOn06/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HandsOn06/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Greetings/Greetings.go" beforeDir="false" afterPath="$PROJECT_DIR$/Greetings/Greetings.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HandsOn3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HandsOn3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../goscapefiles/.idea/goscapefiles.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../goscapefiles/.idea/goscapefiles.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../goscapefiles/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../goscapefiles/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../goscapefiles/main" beforeDir="false" afterPath="$PROJECT_DIR$/../goscapefiles/main" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../goscapefiles/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../goscapefiles/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +109,7 @@
       <workItem from="1753873794423" duration="2443000" />
       <workItem from="1753946596996" duration="700000" />
       <workItem from="1753952126229" duration="677000" />
-      <workItem from="1754033451410" duration="585000" />
+      <workItem from="1754033451410" duration="684000" />
     </task>
     <servers />
   </component>
