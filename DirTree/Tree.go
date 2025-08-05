@@ -4,45 +4,38 @@ import (
 	"fmt"
 	"os"
 	path2 "path"
-	"sort"
-	"strings"
 )
 
-func Tree(path string, depth int) {
-	node := "├──"
-	lastNode := "└──"
-	backBone := "│"
+func Tree(path string, prefix string, isLast bool) {
+	dirContent, err := os.ReadDir(path)
+	if err != nil {
+		return
+	}
 
-	dirContent, _ := os.ReadDir(path)
-
-	lastidx := len(dirContent) - 1
-
-	sort.Slice(dirContent, func(i, j int) bool {
-		return dirContent[i].Name()[0] > dirContent[j].Name()[0]
-	})
-	for idx, content := range dirContent {
-		if content.Name()[0] == '.' {
-			continue
-		}
-
-		if idx != lastidx {
-			if !content.IsDir() {
-				fmt.Printf(" %v %v %v %v \n", backBone, strings.Repeat("\t", depth), node, content.Name())
-			} else {
-				fmt.Printf("%v %v %v \n", strings.Repeat("\t", depth), node, content.Name())
-
-				Tree(path2.Join(path, content.Name()), depth+1)
-			}
-		} else {
-			if !content.IsDir() {
-				fmt.Printf(" %v %v %v %v \n", backBone, strings.Repeat("\t", depth), lastNode, content.Name())
-
-			} else {
-				fmt.Printf("%v %v %v \n", strings.Repeat("\t", depth), lastNode, content.Name())
-				Tree(path2.Join(path, content.Name()), depth+1)
-			}
-
+	visible := []os.DirEntry{}
+	for _, val := range dirContent {
+		if val.Name()[0] != '.' {
+			visible = append(visible, val)
 		}
 	}
 
+	for idx, content := range visible {
+		isLastItem := idx == len(visible)-1
+
+		if isLastItem {
+			fmt.Printf("%s└── %s\n", prefix, content.Name())
+		} else {
+			fmt.Printf("%s├── %s\n", prefix, content.Name())
+		}
+
+		if content.IsDir() {
+			var newPrefix string
+			if isLastItem {
+				newPrefix = prefix + "    "
+			} else {
+				newPrefix = prefix + "│   "
+			}
+			Tree(path2.Join(path, content.Name()), newPrefix, isLastItem)
+		}
+	}
 }

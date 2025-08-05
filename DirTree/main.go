@@ -4,6 +4,6 @@ import "os"
 
 func main() {
 	homeDir, _ := os.UserHomeDir()
-	path := homeDir + "/GoProgramming/"
-	Tree(path, 0)
+	path := homeDir + "/IdeaProjects/"
+	Tree(path, "", false)
 }
