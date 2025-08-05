@@ -1,13 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+	"strings"
+)
 
 func main() {
-	var p *int
+	a := []int{1, 3, 4, 5, 6, 885, 5, 4, 2}
 
-	a := 10
-	p = &a
+	sort.Slice(a, func(i, j int) bool {
+		return a[j] < a[i]
+	})
 
-	fmt.Println("%d is stored at %p", a, p)
-	fmt.Println(p)
+	hi := ""
+
+	fmt.Println(a)
 }

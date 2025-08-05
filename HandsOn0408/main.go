@@ -34,11 +34,11 @@ func main() {
 		//"Prime": "New",
 	}
 
-	myMapInterface := make(map[interface{}]interface{})
+	inverterMap := make(map[interface{}]interface{})
 	for k, v := range testMap {
-		myMapInterface[k] = v
+		inverterMap[k] = v
 	}
-	invertMapOther(myMapInterface)
+	invertMapOther(inverterMap)
 
 	interfaceMap := map[interface{}]interface{}{
 		"Alice":   10,

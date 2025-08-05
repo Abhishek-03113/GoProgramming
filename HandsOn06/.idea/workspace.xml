@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="016cf76f-58db-4b31-af7b-a20279d27993" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HandsOn06.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HandsOn1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HandsOn1/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DirTree/DirTree.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../goscapefiles/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../goscapefiles/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../goscapefiles/main" beforeDir="false" afterPath="$PROJECT_DIR$/../goscapefiles/main" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../goscapefiles/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../goscapefiles/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

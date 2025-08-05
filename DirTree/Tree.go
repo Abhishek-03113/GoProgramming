@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	path2 "path"
+	"sort"
 )
 
 func Tree(path string, prefix string, isLast bool) {
@@ -18,6 +19,10 @@ func Tree(path string, prefix string, isLast bool) {
 			visible = append(visible, val)
 		}
 	}
+
+	sort.Slice(visible, func(i, j int) bool {
+		return visible[i].Name() < visible[j].Name()
+	})
 
 	for idx, content := range visible {
 		isLastItem := idx == len(visible)-1
