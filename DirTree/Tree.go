@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 )
 
 func Tree(path string, hasParent bool) {
@@ -12,13 +13,11 @@ func Tree(path string, hasParent bool) {
 		if entry.Name()[0] == '.' {
 			continue
 		}
-		if hasParent {
+		if entry.IsDir() {
 			fmt.Printf("\t └── %v \n", entry.Name())
-		} else {
-			fmt.Printf("├──  %v\n", entry.Name())
-
+			Tree(filepath.Join(path, entry.Name()), true)
 		}
-		Tree(path+entry.Name(), true)
+
 	}
 
 }
