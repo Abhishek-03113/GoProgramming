@@ -37,12 +37,15 @@ func main() {
 	}
 
 	alice.startActivity(A1)
+	time.Sleep(2 * time.Second) // Simulate some time passing
 	alice.stopActivity(&A1)
 
 	alice.startActivity(A2)
+	time.Sleep(time.Second) // Simulate some time passing
 	alice.stopActivity(&A2)
 
 	alice.startActivity(A3)
+	time.Sleep(time.Second) // Simulate some time passing
 	alice.stopActivity(&A3)
 
 	for _, act := range alice.activities {
