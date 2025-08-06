@@ -5,11 +5,19 @@ import (
 	"time"
 )
 
+type Status int
+
+const (
+	NotStarted Status = iota
+	Started
+	Finished
+)
+
 type Activity struct {
 	action string
 	start  time.Time
 	Time   time.Duration
-	status bool
+	status Status
 }
 
 func NewActivity(action string) *Activity {
@@ -21,15 +29,15 @@ func (a *Activity) calcTime() time.Duration {
 }
 
 func (a *Activity) startActivity() {
-	fmt.Printf("Activity %s started", a.action)
-	a.status = true
+	fmt.Printf("Activity %s started \n", a.action)
+	a.status = Started
 	a.start = time.Now()
 }
 
 func (a *Activity) stopActivity() {
 	fmt.Printf("Activity %s stopped", a.action)
 	a.calcTime()
-	a.status = false
+	a.status = Finished
 }
 
 func (a *Activity) String() string {
@@ -38,10 +46,10 @@ func (a *Activity) String() string {
 }
 
 func (a *Activity) Log() string {
-	if a.status {
-		return "Activity Still running"
+	if a.status != Finished {
+		fmt.Println("Activity Still running or Activity Not Started Yet")
+		return ""
 	}
 	fmt.Println(a.String())
 	return a.String()
-
 }
