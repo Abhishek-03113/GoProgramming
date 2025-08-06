@@ -35,9 +35,9 @@ func (a *Activity) startActivity() {
 }
 
 func (a *Activity) stopActivity() {
-	fmt.Printf("Activity %s stopped", a.action)
-	a.calcTime()
+	a.Time = a.calcTime()
 	a.status = Finished
+	fmt.Printf("Activity %s stopped, runtime\n", a.action)
 }
 
 func (a *Activity) String() string {

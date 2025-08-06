@@ -3,14 +3,14 @@ package main
 type User struct {
 	name       string
 	email      string
-	activities []Activity
+	activities []*Activity
 }
 
-func (u *User) Activities() []Activity {
+func (u *User) Activities() []*Activity {
 	return u.activities
 }
 
-func RegisterUser(name string, email string, activities []Activity, users []User) (*User, bool) {
+func RegisterUser(name string, email string, activities []*Activity, users []User) (*User, bool) {
 	if exist := emailExist(users, email); exist {
 		return nil, false
 	}
@@ -21,10 +21,10 @@ func RegisterUser(name string, email string, activities []Activity, users []User
 func emailExist(users []User, email string) bool {
 	for _, user := range users {
 		if user.email == email {
-			return false
+			return true
 		}
 	}
-	return true
+	return false
 }
 
 func (u *User) Name() string {
@@ -47,7 +47,7 @@ func (u *User) startActivity(activity Activity) {
 	activity.startActivity()
 }
 
-func (u *User) stopActivity(activity Activity) {
+func (u *User) stopActivity(activity *Activity) {
 	activity.stopActivity()
 	u.activities = append(u.activities, activity)
 }
