@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"sort"
-	"strings"
 )
 
 func main() {
@@ -13,7 +12,39 @@ func main() {
 		return a[j] < a[i]
 	})
 
-	hi := ""
-
 	fmt.Println(a)
+
+	x := A{
+		X: 10,
+		Y: 20,
+	}
+
+	fmt.Println(x)
+
+	About(1.000)
+}
+
+type A struct {
+	X int
+	Y float64
+}
+
+func (a A) String() string {
+	return fmt.Sprintf("This is struct which has two variable X = %d and Y = %f", a.X, a.Y)
+}
+
+type B struct {
+	X int
+	Y float64
+}
+
+func About(i interface{}) {
+	switch i.(type) {
+	case int:
+		fmt.Println("This is an int")
+	case string:
+		fmt.Println("this is a string")
+	case float64:
+		fmt.Println("this is a float")
+	}
 }
