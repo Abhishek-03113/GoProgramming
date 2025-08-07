@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	getCPU()
+	getMemoryStats()
 }
 
 func getHostName() string {
@@ -58,8 +58,14 @@ func getMemoryStats() string {
 	pageSizeBytes, _ := exec.Command("sysctl", "-n", "hw.pagesize").Output()
 	memsizeBytes, _ := exec.Command("sysctl", "-n", "hw.memsize").Output()
 	freePagesBytes, _ := exec.Command("sysctl", "-n", "vm.page_free_count").Output()
-	pageSize, _ := strconv.ParseInt(string(pageSizeBytes), 10, 64)
-	memSize, _ := strconv.ParseInt(string(memsizeBytes), 10, 64)
-	pageSize, _ := strconv.ParseInt(string(pageSizeBytes), 10, 64)
+	pageSizeStr := strings.Trim(string(pageSizeBytes), "\n")
+	memSize := strings.Trim(string(memsizeBytes), "\n")
+	freePages := strings.Trim(string(freePagesBytes), "\n")
+
+	//memSizeGB := int(memSize / (1024 * 1024))
+	//freeGB := float64(freePages*pageSize) / (1024 * 1024 * 1024)
+
+	fmt.Println(memSize, pageSize, freePages)
+
 	return ""
 }

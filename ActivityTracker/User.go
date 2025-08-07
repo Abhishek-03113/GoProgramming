@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+//var activityIdx int
+
 type User struct {
 	name       string
 	email      string
