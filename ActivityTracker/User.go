@@ -5,14 +5,10 @@ import "fmt"
 type User struct {
 	name       string
 	email      string
-	activities []Activity
+	activities map[string]Activity
 }
 
-func (u *User) Activities() []Activity {
-	return u.activities
-}
-
-func RegisterUser(name string, email string, activities []Activity, emailMap map[string]User) *User {
+func RegisterUser(name string, email string, activities map[string]Activity, emailMap map[string]User) *User {
 	if exist := emailExist(emailMap, email); exist {
 		fmt.Println("Email Already Exist User Registration Failed")
 		return nil
@@ -29,16 +25,18 @@ func emailExist(emailMap map[string]User, email string) bool {
 
 func (u *User) startActivity(activity *Activity) {
 	activity.startActivity()
-	u.activities = append(u.activities, *activity)
-
+	u.activities[activity.Action] = *activity
 }
 
 func (u *User) stopActivity(activity *Activity) {
 	activity.stopActivity()
+
+	u.activities[activity.Action] = *activity
 }
 
 func (u *User) PrintLog() {
 	fmt.Printf("\t--- %s's Activity Log ---\t\n\n", u.name)
+	//fmt.Println(u.activities)
 	for _, activity := range u.activities {
 		fmt.Println(activity.Log())
 	}
