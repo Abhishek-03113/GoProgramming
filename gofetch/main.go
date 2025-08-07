@@ -4,12 +4,14 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"runtime"
 	"strconv"
 	"strings"
 	"time"
 )
 
 func main() {
+	getCPU()
 }
 
 func getHostName() string {
@@ -29,7 +31,9 @@ func getOS() string {
 	namestr := strings.Trim(string(name), "\n")
 	versionstr := strings.Trim(string(version), "\n")
 	buildstr := strings.Trim(string(build), "\n")
-	return fmt.Sprintf("%s : %s (%s)", namestr, versionstr, buildstr)
+	archget, _ := exec.Command("uname", "-m").Output()
+	arch := string(archget)
+	return fmt.Sprintf("%s : %s (%s) %s", namestr, versionstr, buildstr, arch)
 }
 
 func getUptime() string {
@@ -40,4 +44,22 @@ func getUptime() string {
 	secs, _ := strconv.ParseInt(sec, 10, 64)
 	uptime := time.Since(time.Unix(secs, 0))
 	return uptime.String()
+}
+
+func getCPU() string {
+	cpuCount := runtime.NumCPU()
+	cpuver, _ := exec.Command("sysctl", "-n", "machdep.cpu.brand_string").Output()
+	cpu := string(cpuver)
+	return fmt.Sprintf("%s (%d)", cpu, cpuCount)
+}
+
+func getMemoryStats() string {
+
+	pageSizeBytes, _ := exec.Command("sysctl", "-n", "hw.pagesize").Output()
+	memsizeBytes, _ := exec.Command("sysctl", "-n", "hw.memsize").Output()
+	freePagesBytes, _ := exec.Command("sysctl", "-n", "vm.page_free_count").Output()
+	pageSize, _ := strconv.ParseInt(string(pageSizeBytes), 10, 64)
+	memSize, _ := strconv.ParseInt(string(memsizeBytes), 10, 64)
+	pageSize, _ := strconv.ParseInt(string(pageSizeBytes), 10, 64)
+	return ""
 }
