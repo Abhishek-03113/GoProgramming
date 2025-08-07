@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	getMemoryStats()
+	getCPU()
 }
 
 func getHostName() string {
