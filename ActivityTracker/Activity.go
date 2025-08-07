@@ -14,42 +14,38 @@ const (
 )
 
 type Activity struct {
-	action string
-	start  time.Time
+	Action string
+	Start  time.Time
 	Time   time.Duration
-	status Status
+	Status Status
 }
 
-func NewActivity(action string) *Activity {
-	return &Activity{action: action}
+func NewActivity(Action string) *Activity {
+	return &Activity{Action: Action, Status: NotStarted}
 }
 
 func (a *Activity) calcTime() time.Duration {
-	return time.Since(a.start)
+	return time.Since(a.Start)
 }
 
 func (a *Activity) startActivity() {
-	fmt.Printf("Activity %s started \n", a.action)
-	a.status = Started
-	a.start = time.Now()
+	a.Start = time.Now()
+	a.Status = Started
 }
 
 func (a *Activity) stopActivity() {
 	a.Time = a.calcTime()
-	a.status = Finished
-	fmt.Printf("Activity %s stopped, runtime\n", a.action)
+	a.Status = Finished
 }
 
 func (a *Activity) String() string {
-	return fmt.Sprintf("Activity %s started at %v and lasted for %v", a.action, a.start, a.Time)
-
+	return fmt.Sprintf("Activity %s started at %v:%v:%v and lasted for %v \n", a.Action, a.Start.Hour(), a.Start.Minute(), a.Start.Second(), a.Time)
 }
 
 func (a *Activity) Log() string {
-	if a.status != Finished {
+	if a.Status != Finished {
 		fmt.Println("Activity Still running or Activity Not Started Yet")
 		return ""
 	}
-	fmt.Println(a.String())
 	return a.String()
 }

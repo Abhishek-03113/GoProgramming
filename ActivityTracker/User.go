@@ -1,30 +1,30 @@
 package main
 
+import "fmt"
+
 type User struct {
 	name       string
 	email      string
-	activities []*Activity
+	activities []Activity
 }
 
-func (u *User) Activities() []*Activity {
+func (u *User) Activities() []Activity {
 	return u.activities
 }
 
-func RegisterUser(name string, email string, activities []*Activity, users []User) (*User, bool) {
-	if exist := emailExist(users, email); exist {
-		return nil, false
+func RegisterUser(name string, email string, activities []Activity, emailMap map[string]User) *User {
+	if exist := emailExist(emailMap, email); exist {
+		fmt.Println("Email Already Exist User Registration Failed")
+		return nil
 	}
-	users = append(users, User{name: name, email: email, activities: activities})
-	return &User{name: name, email: email, activities: activities}, true
+	emailMap[email] = User{name: name, email: email, activities: activities}
+	user := emailMap[email]
+	return &user
 }
 
-func emailExist(users []User, email string) bool {
-	for _, user := range users {
-		if user.email == email {
-			return true
-		}
-	}
-	return false
+func emailExist(emailMap map[string]User, email string) bool {
+	_, exist := emailMap[email]
+	return exist
 }
 
 func (u *User) Name() string {
@@ -43,11 +43,19 @@ func (u *User) SetEmail(email string) {
 	u.email = email
 }
 
-func (u *User) startActivity(activity Activity) {
+func (u *User) startActivity(activity *Activity) {
 	activity.startActivity()
 }
 
 func (u *User) stopActivity(activity *Activity) {
 	activity.stopActivity()
-	u.activities = append(u.activities, activity)
+	u.activities = append(u.activities, *activity)
+}
+
+func (u *User) PrintLog() {
+	for _, activity := range u.activities {
+		fmt.Printf("%s's Activity Log \n", u.name)
+		fmt.Println(activity.Log())
+	}
+
 }
