@@ -58,14 +58,12 @@ func getMemoryStats() string {
 	pageSizeBytes, _ := exec.Command("sysctl", "-n", "hw.pagesize").Output()
 	memsizeBytes, _ := exec.Command("sysctl", "-n", "hw.memsize").Output()
 	freePagesBytes, _ := exec.Command("sysctl", "-n", "vm.page_free_count").Output()
+
 	pageSizeStr := strings.Trim(string(pageSizeBytes), "\n")
-	memSize := strings.Trim(string(memsizeBytes), "\n")
-	freePages := strings.Trim(string(freePagesBytes), "\n")
+	memSizeStr := strings.Trim(string(memsizeBytes), "\n")
+	freePagesStr := strings.Trim(string(freePagesBytes), "\n")
 
-	//memSizeGB := int(memSize / (1024 * 1024))
-	//freeGB := float64(freePages*pageSize) / (1024 * 1024 * 1024)
-
-	fmt.Println(memSize, pageSize, freePages)
+	fmt.Println(memSizeStr, pageSizeStr, freePagesStr)
 
 	return ""
 }
