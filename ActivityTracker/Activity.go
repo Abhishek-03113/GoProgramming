@@ -39,13 +39,13 @@ func (a *Activity) stopActivity() {
 }
 
 func (a *Activity) String() string {
-	return fmt.Sprintf("Activity %s started at %v:%v:%v and lasted for %v \n", a.Action, a.Start.Hour(), a.Start.Minute(), a.Start.Second(), a.Time)
+
+	if a.Status == Finished {
+		return fmt.Sprintf("Activity %s started at %v:%v:%v and lasted for %v \n", a.Action, a.Start.Hour(), a.Start.Minute(), a.Start.Second(), a.Time)
+	}
+	return fmt.Sprintf("Activity %s started at %v:%v:%v and running since %v \n", a.Action, a.Start.Hour(), a.Start.Minute(), a.Start.Second(), a.calcTime())
 }
 
 func (a *Activity) Log() string {
-	if a.Status != Finished {
-		fmt.Println("Activity Still running or Activity Not Started Yet")
-		return ""
-	}
 	return a.String()
 }

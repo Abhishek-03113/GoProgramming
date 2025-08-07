@@ -27,35 +27,20 @@ func emailExist(emailMap map[string]User, email string) bool {
 	return exist
 }
 
-func (u *User) Name() string {
-	return u.name
-}
-
-func (u *User) SetName(name string) {
-	u.name = name
-}
-
-func (u *User) Email() string {
-	return u.email
-}
-
-func (u *User) SetEmail(email string) {
-	u.email = email
-}
-
 func (u *User) startActivity(activity *Activity) {
 	activity.startActivity()
+	u.activities = append(u.activities, *activity)
+
 }
 
 func (u *User) stopActivity(activity *Activity) {
 	activity.stopActivity()
-	u.activities = append(u.activities, *activity)
 }
 
 func (u *User) PrintLog() {
+	fmt.Printf("\t--- %s's Activity Log ---\t\n\n", u.name)
 	for _, activity := range u.activities {
-		fmt.Printf("%s's Activity Log \n", u.name)
 		fmt.Println(activity.Log())
 	}
-
+	fmt.Println()
 }
