@@ -16,7 +16,7 @@ func main() {
 	go WindSensor(windChan)
 	go HumiditySensor(humiChan)
 
-	for i := time.Second; i < 30*time.Second; i += time.Second {
+	for tempChan != nil && windChan != nil && humiChan != nil {
 		select {
 		case tempReading, ok := <-tempChan:
 			if ok {
@@ -44,7 +44,6 @@ func main() {
 
 		}
 
-		fmt.Println(i)
 	}
 
 }
