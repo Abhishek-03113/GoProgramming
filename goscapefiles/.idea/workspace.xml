@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69b0b3f3-6588-4fad-b3e7-a4286c8a06cc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../gofetch/gofetch" beforeDir="false" afterPath="$PROJECT_DIR$/../gofetch/gofetch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DownloadManager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DownloadManager/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DownloadManager/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../DownloadManager/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
@@ -134,6 +135,8 @@
       <workItem from="1754646387743" duration="928000" />
       <workItem from="1754895311792" duration="213000" />
       <workItem from="1754895540296" duration="2925000" />
+      <workItem from="1754912845794" duration="2000" />
+      <workItem from="1754912866601" duration="416000" />
     </task>
     <servers />
   </component>
