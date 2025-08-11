@@ -12,33 +12,65 @@ import (
 )
 
 func main() {
+	info := []struct {
+		label string
+		value string
+	}{
+		{"Host", getHostName()},
+		{"OS", getOS()},
+		{"Host Model", getHost()},
+		{"Kernel", getKernel()},
+		{"Uptime", getUptime()},
+		{"Shell", getShell()},
+		{"Resolution", getDisplayResolution()},
+		{"DE", getDE()},
+		{"WM", getWM()},
+		{"Terminal", getTerm()},
+		{"CPU", getCPU()},
+		{"GPU", getGPU()},
+		{"Memory", getMemoryStats()},
+	}
 
-	// hostname
+	// Find longest label for alignment
+	maxLabelLen := 0
+	for _, item := range info {
+		if len(item.label) > maxLabelLen {
+			maxLabelLen = len(item.label)
+		}
+	}
+
 	fmt.Println(getHostName())
-	// os
-	fmt.Println(getOS())
-	// host
-	fmt.Println(getHost())
-	// kernel
-	fmt.Println(getKernel())
-	// uptime
-	fmt.Println(getUptime())
-	// shell
-	fmt.Println(getShell())
-	// resolution
-	fmt.Println(getDisplayResolution())
-	// DE
-	fmt.Println(getDE())
-	// WM
-	fmt.Println(getWM())
-	// Terminal
-	fmt.Println(getTerm())
-	// CPU
-	fmt.Println(getCPU())
-	// GPU
-	fmt.Println(getGPU())
-	// Memory
-	fmt.Println(getMemoryStats())
+	fmt.Println(strings.Repeat("-", len(getHostName())))
+	for _, item := range info {
+		fmt.Printf("%-*s : %s\n", maxLabelLen, item.label, item.value)
+	}
+
+	//// hostname
+	//fmt.Println(getHostName())
+	//// os
+	//fmt.Println(getOS())
+	//// host
+	//fmt.Println(getHost())
+	//// kernel
+	//fmt.Println(getKernel())
+	//// uptime
+	//fmt.Println(getUptime())
+	//// shell
+	//fmt.Println(getShell())
+	//// resolution
+	//fmt.Println(getDisplayResolution())
+	//// DE
+	//fmt.Println(getDE())
+	//// WM
+	//fmt.Println(getWM())
+	//// Terminal
+	//fmt.Println(getTerm())
+	//// CPU
+	//fmt.Println(getCPU())
+	//// GPU
+	//fmt.Println(getGPU())
+	//// Memory
+	//fmt.Println(getMemoryStats())
 }
 
 func getWM() string {
@@ -165,7 +197,7 @@ func getKernel() string {
 
 func getDisplayResolution() string {
 	out, _ := exec.Command("sh", "-c", `system_profiler SPDisplaysDataType | grep "Resolution:" | head -n 1`).Output()
-	return fmt.Sprintf("%s", strings.Trim(strings.TrimSpace(string(out)), "\n"))
+	return fmt.Sprintf("%s", strings.Trim(strings.TrimSpace(strings.Split(string(out), ":")[1]), "\n"))
 }
 
 func getDE() string {
