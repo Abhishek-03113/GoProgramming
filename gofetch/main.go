@@ -44,33 +44,6 @@ func main() {
 	for _, item := range info {
 		fmt.Printf("%-*s : %s\n", maxLabelLen, item.label, item.value)
 	}
-
-	//// hostname
-	//fmt.Println(getHostName())
-	//// os
-	//fmt.Println(getOS())
-	//// host
-	//fmt.Println(getHost())
-	//// kernel
-	//fmt.Println(getKernel())
-	//// uptime
-	//fmt.Println(getUptime())
-	//// shell
-	//fmt.Println(getShell())
-	//// resolution
-	//fmt.Println(getDisplayResolution())
-	//// DE
-	//fmt.Println(getDE())
-	//// WM
-	//fmt.Println(getWM())
-	//// Terminal
-	//fmt.Println(getTerm())
-	//// CPU
-	//fmt.Println(getCPU())
-	//// GPU
-	//fmt.Println(getGPU())
-	//// Memory
-	//fmt.Println(getMemoryStats())
 }
 
 func getWM() string {
@@ -125,7 +98,11 @@ func getUptime() string {
 	sec = strings.Trim(sec, ",")
 	secs, _ := strconv.ParseInt(sec, 10, 64)
 	uptime := time.Since(time.Unix(secs, 0))
-	return uptime.String()
+
+	days := int(uptime.Hours()) / 24
+	hours := int(uptime.Hours()) % 24
+	minutes := int(uptime.Minutes()) % 60
+	return fmt.Sprintf("%d days, %d hours, %d minutes", days, hours, minutes)
 
 }
 
