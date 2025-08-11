@@ -8,39 +8,44 @@ import (
 func main() {
 	fmt.Println("Central Monitor")
 
-	tempChan := make(chan float64, 10)
-	windChan := make(chan float64, 10)
-	humiChan := make(chan float64, 10)
+	tempChan := make(chan float64)
+	windChan := make(chan float64)
+	humiChan := make(chan float64)
 
 	go TemperatureSensor(tempChan)
 	go WindSensor(windChan)
 	go HumiditySensor(humiChan)
 
-	for tempChan != nil && windChan != nil && humiChan != nil {
+	tcnt, wcnt, hcnt := 0, 0, 0
+	for {
 		select {
 		case tempReading, ok := <-tempChan:
 			if ok {
-				fmt.Println("Reading from temperature sensor : ", tempReading)
+				fmt.Printf("Temperature sensor, cnt : %d, reading : %.2f \n", tcnt, tempReading)
+				tcnt++
 			} else {
 				fmt.Println("temp channel closed")
-				tempChan = nil // Prevent further reads from tempChan
+				tempChan = nil
 			}
 		case windReading, ok := <-windChan:
 			if ok {
-				fmt.Println("Reading from wind sensor : ", windReading)
+				fmt.Printf("Wind sensor, cnt : %d, reading : %.2f \n", wcnt, windReading)
+				wcnt++
 			} else {
 				fmt.Println("Wind Channel is closed")
-				windChan = nil // Prevent further reads from tempChan
+				windChan = nil
 			}
 		case humidityReading, ok := <-humiChan:
 			if ok {
-				fmt.Println("Reading from Humidity sensor : ", humidityReading)
+				fmt.Printf("Humidity sensor, cnt : %d, reading : %.2f \n", hcnt, humidityReading)
+				hcnt++
 			} else {
 				fmt.Println("Humidity Channel Closed")
-				humiChan = nil // Prevent further reads from windChan
+				humiChan = nil
 			}
 		case <-time.After(4 * time.Second):
 			fmt.Println("No readings received in the last second")
+			return
 
 		}
 
@@ -50,10 +55,8 @@ func main() {
 
 func TemperatureSensor(tempChan chan<- float64) {
 	temperatures := []float64{32.5, 30.5, 40.9, 42.6}
-	n := len(temperatures)
-	for idx, temp := range temperatures {
+	for _, temp := range temperatures {
 		tempChan <- temp
-		fmt.Println("Remaining temperature readings: ", n-idx-1)
 		time.Sleep(2 * time.Second)
 	}
 
@@ -62,10 +65,8 @@ func TemperatureSensor(tempChan chan<- float64) {
 
 func HumiditySensor(humiditychan chan<- float64) {
 	humidities := []float64{12.5, 13.5, 15.9, 19.6}
-	n := len(humidities)
-	for idx, humi := range humidities {
+	for _, humi := range humidities {
 		humiditychan <- humi
-		fmt.Println("Remaining humidity readings: ", n-idx-1)
 		time.Sleep(time.Second)
 	}
 	close(humiditychan)
@@ -74,10 +75,8 @@ func HumiditySensor(humiditychan chan<- float64) {
 
 func WindSensor(windchan chan<- float64) {
 	windspeeds := []float64{112.5, 113.5, 115.9, 119.6}
-	n := len(windspeeds)
-	for idx, wind := range windspeeds {
+	for _, wind := range windspeeds {
 		windchan <- wind
-		fmt.Println("Remaining wind readings: ", n-idx-1)
 		time.Sleep(3 * time.Second)
 	}
 	close(windchan)

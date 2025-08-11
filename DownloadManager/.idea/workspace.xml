@@ -4,16 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31dd4d38-bc29-44f9-bd64-ae390c0760fa" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../DownloadManager/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DownloadManager/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DownloadManager/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DownloadManager/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DownloadManager/DownloadManager.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DownloadManager/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DownloadManager/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+    <list default="true" id="c8574888-259e-4ce6-baad-ed157c38cb74" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DownloadManager.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WeatherStationMonitoring/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../WeatherStationMonitoring/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WeatherStationMonitoring/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../WeatherStationMonitoring/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../gofetch/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../gofetch/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../goscapefiles/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../goscapefiles/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../goscapefiles/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../goscapefiles/main.go" afterDir="false" />
@@ -35,9 +35,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
+  &quot;associatedIndex&quot;: 6
 }</component>
-  <component name="ProjectId" id="30xSethIWL5u9jomp2wyXgdkMka" />
+  <component name="ProjectId" id="3104TZPWOGOPqiwoPjYvg7C8OsK" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -45,10 +45,8 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;Go Build.go build main.go.executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
@@ -74,14 +72,13 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="31dd4d38-bc29-44f9-bd64-ae390c0760fa" name="Changes" comment="" />
-      <created>1754567830926</created>
+      <changelist id="c8574888-259e-4ce6-baad-ed157c38cb74" name="Changes" comment="" />
+      <created>1754647666843</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1754567830926</updated>
-      <workItem from="1754567832056" duration="7191000" />
-      <workItem from="1754648664360" duration="3000" />
-      <workItem from="1754648689969" duration="17000" />
+      <updated>1754647666843</updated>
+      <workItem from="1754647667958" duration="3657000" />
+      <workItem from="1754890361709" duration="408000" />
     </task>
     <servers />
   </component>
@@ -90,16 +87,5 @@
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/main.go</url>
-          <line>32</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

@@ -2,63 +2,66 @@ package main
 
 import (
 	"fmt"
-	"time"
+	"os/exec"
+	"regexp"
+	"strconv"
 )
 
-func reportNews(reporter string, stories []string) {
-	for i, story := range stories {
-		fmt.Printf("📰 %s reporting: %s (Story %d)\n", reporter, story, i+1)
-		time.Sleep(1 * time.Second) // Time to write article
-	}
-	fmt.Printf("✅ %s finished all stories!\n", reporter)
-}
-
 func main() {
-	fmt.Println("📺 News Agency starts the day")
+	// Run the vm_stat command
+	out, err := exec.Command("vm_stat").Output()
+	if err != nil {
+		panic(err)
+	}
 
-	// Different reporters covering different beats
-	sportsStories := []string{"Football Match Results", "Basketball Finals", "Tennis Tournament"}
-	techStories := []string{"New AI Release", "Smartphone Launch", "Tech IPO"}
-	weatherStories := []string{"Tomorrow's Forecast", "Hurricane Update", "Seasonal Changes"}
+	// Helper to extract page counts
+	parse := func(key string) uint64 {
+		re := regexp.MustCompile(key + ":[ \t]+([0-9]+)\\.")
+		match := re.FindStringSubmatch(string(out))
+		if len(match) < 2 {
+			return 0
+		}
+		val, _ := strconv.ParseUint(match[1], 10, 64)
+		return val
+	}
 
-	// All reporters work simultaneously
-	go reportNews("Sports Reporter", sportsStories)
-	go reportNews("Tech Reporter", techStories)
-	go reportNews("Weather Reporter", weatherStories)
+	// Extract stats
+	freePages := parse("Pages free")
+	activePages := parse("Pages active")
+	inactivePages := parse("Pages inactive")
+	speculativePages := parse("Pages speculative")
+	wiredPages := parse("Pages wired down")
+	purgeablePages := parse("Pages purgeable")
+	reusablePages := parse("Pages reusable")
 
-	// Wait for all reporters to finish
-	time.Sleep(5 * time.Second)
-	fmt.Println("📺 News Agency day ends")
+	pageSize := uint64(4096) // bytes
+
+	// Compute available memory (like Neofetch)
+	availablePages := freePages + speculativePages + reusablePages
+	availableBytes := availablePages * pageSize
+
+	// Compute total memory from sysctl
+	totalBytesRaw, err := exec.Command("sysctl", "-n", "hw.memsize").Output()
+	if err != nil {
+		panic(err)
+	}
+	totalBytes, _ := strconv.ParseUint(string(totalBytesRaw[:len(totalBytesRaw)-1]), 10, 64)
+
+	// Used = total - available
+	usedBytes := totalBytes - availableBytes
+
+	// Print results
+	fmt.Printf("Total Memory: %.2f GiB\n", float64(totalBytes)/(1024*1024*1024))
+	fmt.Printf("Used Memory:  %.2f GiB\n", float64(usedBytes)/(1024*1024*1024))
+	fmt.Printf("Avail Memory: %.2f GiB\n", float64(availableBytes)/(1024*1024*1024))
+
+	// Debug: print all stats in pages
+	fmt.Println("\n--- Raw Page Stats ---")
+	fmt.Printf("Free: %d\n", freePages)
+	fmt.Printf("Active: %d\n", activePages)
+	fmt.Printf("Inactive: %d\n", inactivePages)
+	fmt.Printf("Speculative: %d\n", speculativePages)
+	fmt.Printf("Wired: %d\n", wiredPages)
+	fmt.Printf("Purgeable: %d\n", purgeablePages)
+	fmt.Printf("Reusable: %d\n", reusablePages)
 }
-
-//package main
-//
-//import (
-//	"fmt"
-//	"time"
-//)
-//
-//func brewCoffee(coffeeType string) {
-//	fmt.Printf("☕ Starting to brew %s...\n", coffeeType)
-//	time.Sleep(2 * time.Second) // Brewing time
-//	fmt.Printf("✅ %s is ready!\n", coffeeType)
-//}
-//
-//func main() {
-//	fmt.Println("🏪 Coffee shop opens!")
-//
-//	// Without goroutines - customers wait in line
-//	brewCoffee("Espresso")
-//	brewCoffee("Latte")
-//	brewCoffee("Cappuccino")
-//
-//	fmt.Println("\n--- Now with concurrent brewing ---\n")
-//
-//	// With goroutines - multiple coffee machines working
-//	go brewCoffee("Espresso")   // Machine 1
-//	go brewCoffee("Latte")      // Machine 2
-//	go brewCoffee("Cappuccino") // Machine 3
-//
-//	time.Sleep(3 * time.Second) // Wait for all to complete
-//	fmt.Println("🚪 Coffee shop closes!")
-//}

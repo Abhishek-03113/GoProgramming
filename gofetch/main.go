@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"regexp"
 	"runtime"
 	"strconv"
 	"strings"
@@ -11,7 +12,7 @@ import (
 )
 
 func main() {
-	getCPU()
+	getMemoryStats()
 }
 
 func getHostName() string {
@@ -44,26 +45,51 @@ func getUptime() string {
 	secs, _ := strconv.ParseInt(sec, 10, 64)
 	uptime := time.Since(time.Unix(secs, 0))
 	return uptime.String()
+
 }
 
 func getCPU() string {
 	cpuCount := runtime.NumCPU()
 	cpuver, _ := exec.Command("sysctl", "-n", "machdep.cpu.brand_string").Output()
-	cpu := string(cpuver)
-	return fmt.Sprintf("%s (%d)", cpu, cpuCount)
+	cpu := strings.Trim(string(cpuver), "\n")
+	return fmt.Sprintf("%s (%d) \n", cpu, cpuCount)
 }
 
 func getMemoryStats() string {
 
 	pageSizeBytes, _ := exec.Command("sysctl", "-n", "hw.pagesize").Output()
 	memsizeBytes, _ := exec.Command("sysctl", "-n", "hw.memsize").Output()
-	freePagesBytes, _ := exec.Command("sysctl", "-n", "vm.page_free_count").Output()
+	inactivePagesBytes, _ := exec.Command("sysctl", "-n", "vm.page_reusable_count").Output()
+
+	out, err := exec.Command("vm_stat").Output()
+	if err != nil {
+		panic(err)
+	}
+
+	// Helper to extract page counts
+	parse := func(key string) uint64 {
+		re := regexp.MustCompile(key + ":[ \t]+([0-9]+)\\.")
+		match := re.FindStringSubmatch(string(out))
+		if len(match) < 2 {
+			return 0
+		}
+		val, _ := strconv.ParseUint(match[1], 10, 64)
+		return val
+	}
+
+	activePages := parse("Pages active")
 
 	pageSizeStr := strings.Trim(string(pageSizeBytes), "\n")
 	memSizeStr := strings.Trim(string(memsizeBytes), "\n")
-	freePagesStr := strings.Trim(string(freePagesBytes), "\n")
+	inactivePagesStr := strings.Trim(string(inactivePagesBytes), "\n")
+	fmt.Println(inactivePagesStr)
 
-	fmt.Println(memSizeStr, pageSizeStr, freePagesStr)
+	memfloat, _ := strconv.ParseInt(memSizeStr, 10, 64)
+	pageSize, _ := strconv.ParseInt(pageSizeStr, 10, 64)
 
+	memory := float64(memfloat) / (1024 * 1024 * 1024)
+	freeMemory := float64(memory-(float64(activePages)*float64(pageSize))) / (1024 * 1024 * 1024)
+
+	fmt.Println(memory, freeMemory)
 	return ""
 }
