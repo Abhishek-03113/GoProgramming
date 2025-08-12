@@ -28,14 +28,14 @@ func MessageService(username string, messageChannel <-chan string) {
 
 func main() {
 
-	msgChannelA := make(chan string, 5)
-	msgChannelB := make(chan string, 5)
+	msgChannelAlice := make(chan string, 5)
+	msgChannelBob := make(chan string, 5)
 
 	alice := User{"Alice"}
 	bob := User{"Bob"}
 
-	go MessageService(bob.name, msgChannelB)
-	go MessageService(alice.name, msgChannelA)
+	go MessageService(bob.name, msgChannelBob)
+	go MessageService(alice.name, msgChannelAlice)
 
 	scanner := bufio.NewScanner(os.Stdin)
 
@@ -48,8 +48,8 @@ func main() {
 		sender = strings.ToLower(strings.TrimSpace(scanner.Text()))
 
 		if strings.ToLower(sender) == "exit" {
-			close(msgChannelA)
-			close(msgChannelB)
+			close(msgChannelAlice)
+			close(msgChannelBob)
 			break
 		}
 
@@ -58,9 +58,9 @@ func main() {
 		message = scanner.Text()
 
 		if strings.ToLower(sender) == "alice" {
-			alice.sendMessage(message, &msgChannelB)
+			alice.sendMessage(message, &msgChannelBob)
 		} else if strings.ToLower(sender) == "bob" {
-			bob.sendMessage(message, &msgChannelA)
+			bob.sendMessage(message, &msgChannelAlice)
 		} else {
 			fmt.Println("Unknown sender.")
 		}
