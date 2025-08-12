@@ -17,7 +17,7 @@ func bookTicket(id int, bookingChannel <-chan int, ticketChan chan<- string, wg 
 		} else if *Tickets-requiredTicket > 0 {
 			lock.Lock()
 			*Tickets -= requiredTicket
-			ticketChan <- fmt.Sprintf("%d booked %d tickets \n", id, requiredTicket)
+			ticketChan <- fmt.Sprintf("Worker %d booked %d tickets \n", id, requiredTicket)
 			lock.Unlock()
 		} else {
 			ticketChan <- fmt.Sprintf("%d tickets are not available, available tickets %d \n", requiredTicket, *Tickets)
