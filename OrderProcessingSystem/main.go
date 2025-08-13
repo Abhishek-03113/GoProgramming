@@ -9,7 +9,6 @@ import (
 var wg sync.WaitGroup
 var lock sync.RWMutex
 var errs []error
-var orderCounter int
 
 type Order struct {
 	orderId int
@@ -31,20 +30,27 @@ func ProcessOrder(workerId int, orderChannel chan *Order, stockMap map[string]*S
 	defer wg.Done()
 	for order := range orderChannel {
 		amount, err := Checkout(order.Items, stockMap)
+		lock.Lock()
 		order.Amount = amount
+		lock.Unlock()
 		if err != nil {
+			lock.Lock()
 			errs = append(errs, err)
+			lock.Unlock()
 			fmt.Printf("[Worker-%d] Processing Order %d ....  ❌ Out of Stock\n", workerId, order.orderId)
 		} else {
 			var paymentStatus string
 			_, err := getPayment(order.Amount)
 			if err != nil {
+				lock.Lock()
 				errs = append(errs, err)
+				lock.Unlock()
 				paymentStatus = "❌ Payment Failed"
 				fmt.Printf("[Worker-%d] Processing Order %d ....  %s\n", workerId, order.orderId, paymentStatus)
 			} else {
-				paymentStatus = "✅ Payment Success"
 				lock.Lock()
+				paymentStatus = "✅ Payment Success"
+
 				for _, itemName := range order.Items {
 					if stockItem, exists := stockMap[itemName]; exists {
 						stockItem.quantity--
