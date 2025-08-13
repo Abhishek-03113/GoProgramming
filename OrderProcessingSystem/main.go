@@ -7,7 +7,7 @@ import (
 )
 
 var wg sync.WaitGroup
-var lock sync.RWMutex
+var lock sync.Mutex
 var errs []error
 
 type Order struct {
@@ -50,7 +50,6 @@ func ProcessOrder(workerId int, orderChannel chan *Order, stockMap map[string]*S
 			} else {
 				lock.Lock()
 				paymentStatus = "✅ Payment Success"
-
 				for _, itemName := range order.Items {
 					if stockItem, exists := stockMap[itemName]; exists {
 						stockItem.quantity--
@@ -64,8 +63,8 @@ func ProcessOrder(workerId int, orderChannel chan *Order, stockMap map[string]*S
 }
 
 func Checkout(items []string, stockMap map[string]*StockItem) (float64, error) {
-	lock.RLock()
-	defer lock.RUnlock()
+	lock.Lock()
+	defer lock.Unlock()
 	var bill float64
 	for _, itemName := range items {
 		stockItem, err := stockMap[itemName]
@@ -73,16 +72,15 @@ func Checkout(items []string, stockMap map[string]*StockItem) (float64, error) {
 			return -1, fmt.Errorf("item %s is out of stock", itemName)
 		}
 		bill += stockItem.price
+
 	}
 	return bill, nil
 }
 
-func CreateOrder(orderID int, items []string, stockMap map[string]*StockItem) *Order {
-	amount, _ := Checkout(items, stockMap)
+func CreateOrder(orderID int, items []string) *Order {
 	return &Order{
 		orderId: orderID,
 		Items:   items,
-		Amount:  amount,
 	}
 }
 
@@ -110,21 +108,15 @@ func main() {
 		go ProcessOrder(i, orderChannel, stockMap)
 	}
 
-	order1 := CreateOrder(1, []string{"phone", "charger", "mouse"}, stockMap)
-	order2 := CreateOrder(2, []string{"laptop"}, stockMap)
-	order3 := CreateOrder(3, []string{"phone", "charger"}, stockMap)
-	order4 := CreateOrder(4, []string{"mouse", "laptop", "mouse"}, stockMap)
+	order1 := CreateOrder(1, []string{"phone", "charger", "mouse"})
+	order2 := CreateOrder(2, []string{"laptop"})
+	order3 := CreateOrder(3, []string{"phone", "charger"})
+	order4 := CreateOrder(4, []string{"mouse", "laptop", "mouse"})
 
 	orders := []*Order{
-		order3, order2, order1, order4,
+		order1, order2, order3, order4,
 	}
 
-	fmt.Println("-------Orders-------")
-	for _, order := range orders {
-		fmt.Println(order)
-		fmt.Println("-------------------")
-
-	}
 	fmt.Println()
 	for _, order := range orders {
 		orderChannel <- order
@@ -162,6 +154,13 @@ func main() {
 
 	close(orderChannel)
 	wg.Wait()
+
+	fmt.Println("-------Orders-------")
+	for _, order := range orders {
+		fmt.Println(order)
+		fmt.Println("-------------------")
+
+	}
 
 	fmt.Println()
 	fmt.Println("-------Errors-------")
