@@ -1,13 +1,9 @@
 package main
 
 import (
-	"bufio"
 	"errors"
 	"fmt"
-	"log"
 	"math/rand"
-	"os"
-	"strings"
 	"sync"
 )
 
@@ -16,7 +12,7 @@ var lock sync.RWMutex
 
 type Order struct {
 	orderId int
-	Items   []string // List of items in the order
+	Items   []string
 	Amount  float64
 }
 
@@ -59,8 +55,8 @@ func Checkout(items []string, stockMap map[string]*StockItem) (float64, error) {
 	defer lock.RUnlock()
 	var bill float64
 	for _, itemName := range items {
-		stockItem, exists := stockMap[itemName]
-		if !exists || stockItem.quantity <= 0 {
+		stockItem, err := stockMap[itemName]
+		if !err || stockItem.quantity <= 0 {
 			return -1, fmt.Errorf("item %s is out of stock", itemName)
 		}
 		bill += stockItem.price
@@ -68,20 +64,15 @@ func Checkout(items []string, stockMap map[string]*StockItem) (float64, error) {
 	return bill, nil
 }
 
-func CreateOrder(orderID int, items []string, stockMap map[string]*StockItem) *Order {
-	amount, err := Checkout(items, stockMap)
-	if err != nil {
-		log.Println(err)
-	}
+func CreateOrder(orderID int, items []string) *Order {
 	return &Order{
 		orderId: orderID,
 		Items:   items,
-		Amount:  amount,
 	}
 }
 
 func getPayment() (bool, error) {
-	random := rand.Int63n(10)
+	random := rand.Int63n(4)
 	if random == 0 {
 		return false, errors.New("payment failed")
 	}
@@ -89,51 +80,63 @@ func getPayment() (bool, error) {
 }
 
 func main() {
+
 	stockMap := map[string]*StockItem{
-		"Charger": {name: "Charger", price: 25.00, quantity: 10},
-		"Mouse":   {name: "Mouse", price: 10.00, quantity: 5},
-		"Laptop":  {name: "Laptop", price: 100.00, quantity: 3},
-		"Phone":   {name: "Phone", price: 60.00, quantity: 2},
+		"charger": {name: "charger", price: 25.00, quantity: 10},
+		"mouse":   {name: "mouse", price: 10.00, quantity: 5},
+		"laptop":  {name: "laptop", price: 100.00, quantity: 2},
+		"phone":   {name: "phone", price: 60.00, quantity: 1},
 	}
 
 	orderChannel := make(chan *Order)
 
-	// Start worker goroutines
 	for i := 0; i < 3; i++ {
 		wg.Add(1)
 		go ProcessOrder(i, orderChannel, stockMap)
 	}
 
-	scanner := bufio.NewScanner(os.Stdin)
-	orderCounter := 1
+	order1 := CreateOrder(1, []string{"phone", "charger", "mouse"})
+	order2 := CreateOrder(2, []string{"laptop"})
+	order3 := CreateOrder(3, []string{"phone", "charger"})
+	order4 := CreateOrder(4, []string{"mouse", "laptop", "mouse"})
 
-	for {
-		fmt.Println("Create a new order (yes/no)?")
-		scanner.Scan()
-		newOrder := strings.ToLower(strings.TrimSpace(scanner.Text()))
-
-		if newOrder != "yes" {
-			close(orderChannel)
-			break
-		}
-
-		// Collect items for the order
-		var items []string
-		for {
-			fmt.Println("Enter item name (or 'done' to finish):")
-			scanner.Scan()
-			item := strings.TrimSpace(scanner.Text())
-			if strings.ToLower(item) == "done" {
-				break
-			}
-			items = append(items, item)
-		}
-
-		order := CreateOrder(orderCounter, items, stockMap)
-		orderCounter++
-		orderChannel <- order
+	orders := []*Order{
+		order3, order2, order1, order4,
 	}
 
+	for _, order := range orders {
+		orderChannel <- order
+	}
+	//scanner := bufio.NewScanner(os.Stdin)
+	//orderCounter := 1
+	//
+	//for {
+	//	fmt.Printf("Create a new order (yes/no)?")
+	//	scanner.Scan()
+	//	newOrder := strings.ToLower(strings.TrimSpace(scanner.Text()))
+	//
+	//	if newOrder != "yes" {
+	//		close(orderChannel)
+	//		break
+	//	}
+	//
+	//	var items []string
+	//	var itemscsv string
+	//
+	//	fmt.Println("input the items you want to buy in a single line separated by comma : ")
+	//	scanner.Scan()
+	//
+	//	itemscsv = strings.ToLower(strings.TrimSpace(scanner.Text()))
+	//	itemslist := strings.Split(itemscsv, ",")
+	//
+	//	for _, item := range itemslist {
+	//		items = append(items, strings.TrimSpace(item))
+	//	}
+	//	order := CreateOrder(orderCounter, items)
+	//	orderCounter++
+	//	orderChannel <- order
+	//}
+	close(orderChannel)
 	wg.Wait()
 	fmt.Println("All orders processed for today")
 }
