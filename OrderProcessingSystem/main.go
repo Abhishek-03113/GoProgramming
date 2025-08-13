@@ -1,10 +1,13 @@
 package main
 
 import (
+	"bufio"
 	"errors"
 	"fmt"
 	"log"
 	"math/rand"
+	"os"
+	"strings"
 	"sync"
 )
 
@@ -13,7 +16,7 @@ var lock sync.RWMutex
 
 type Order struct {
 	orderId int
-	Items   map[string]int // item name -> quantity
+	Items   []string // List of items in the order
 	Amount  float64
 }
 
@@ -39,9 +42,9 @@ func ProcessOrder(workerId int, orderChannel chan *Order, stockMap map[string]*S
 			} else {
 				paymentStatus = "✅ Payment Success"
 				lock.Lock()
-				for itemName, qty := range order.Items {
+				for _, itemName := range order.Items {
 					if stockItem, exists := stockMap[itemName]; exists {
-						stockItem.quantity -= qty
+						stockItem.quantity--
 					}
 				}
 				lock.Unlock()
@@ -51,21 +54,21 @@ func ProcessOrder(workerId int, orderChannel chan *Order, stockMap map[string]*S
 	}
 }
 
-func Checkout(items map[string]int, stockMap map[string]*StockItem) (float64, error) {
+func Checkout(items []string, stockMap map[string]*StockItem) (float64, error) {
 	lock.RLock()
 	defer lock.RUnlock()
 	var bill float64
-	for itemName, qty := range items {
+	for _, itemName := range items {
 		stockItem, exists := stockMap[itemName]
-		if !exists || stockItem.quantity < qty {
+		if !exists || stockItem.quantity <= 0 {
 			return -1, fmt.Errorf("item %s is out of stock", itemName)
 		}
-		bill += stockItem.price * float64(qty)
+		bill += stockItem.price
 	}
 	return bill, nil
 }
 
-func CreateOrder(orderID int, items map[string]int, stockMap map[string]*StockItem) *Order {
+func CreateOrder(orderID int, items []string, stockMap map[string]*StockItem) *Order {
 	amount, err := Checkout(items, stockMap)
 	if err != nil {
 		log.Println(err)
@@ -90,27 +93,47 @@ func main() {
 		"Charger": {name: "Charger", price: 25.00, quantity: 10},
 		"Mouse":   {name: "Mouse", price: 10.00, quantity: 5},
 		"Laptop":  {name: "Laptop", price: 100.00, quantity: 3},
-		"Phone":   {name: "Phone", price: 60.00, quantity: 1},
+		"Phone":   {name: "Phone", price: 60.00, quantity: 2},
 	}
 
 	orderChannel := make(chan *Order)
 
+	// Start worker goroutines
 	for i := 0; i < 3; i++ {
 		wg.Add(1)
 		go ProcessOrder(i, orderChannel, stockMap)
 	}
 
-	order1 := CreateOrder(1, map[string]int{"Phone": 1, "Charger": 1, "Mouse": 1}, stockMap)
-	order2 := CreateOrder(2, map[string]int{"Laptop": 1}, stockMap)
-	order3 := CreateOrder(3, map[string]int{"Phone": 1, "Charger": 1}, stockMap)
-	order4 := CreateOrder(4, map[string]int{"Mouse": 2, "Laptop": 1}, stockMap)
+	scanner := bufio.NewScanner(os.Stdin)
+	orderCounter := 1
 
-	orders := []*Order{order3, order2, order1, order4}
+	for {
+		fmt.Println("Create a new order (yes/no)?")
+		scanner.Scan()
+		newOrder := strings.ToLower(strings.TrimSpace(scanner.Text()))
 
-	for _, ord := range orders {
-		orderChannel <- ord
+		if newOrder != "yes" {
+			close(orderChannel)
+			break
+		}
+
+		// Collect items for the order
+		var items []string
+		for {
+			fmt.Println("Enter item name (or 'done' to finish):")
+			scanner.Scan()
+			item := strings.TrimSpace(scanner.Text())
+			if strings.ToLower(item) == "done" {
+				break
+			}
+			items = append(items, item)
+		}
+
+		order := CreateOrder(orderCounter, items, stockMap)
+		orderCounter++
+		orderChannel <- order
 	}
 
-	close(orderChannel)
 	wg.Wait()
+	fmt.Println("All orders processed for today")
 }
