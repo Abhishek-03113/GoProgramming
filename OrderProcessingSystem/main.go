@@ -9,6 +9,7 @@ import (
 )
 
 var wg sync.WaitGroup
+var lock sync.RWMutex
 
 type Order struct {
 	orderId int
@@ -16,27 +17,33 @@ type Order struct {
 	Amount  float64
 }
 
-func ProcessOrder(workerId int, orderChannel chan Order, stockMap map[string][2]float64) {
+func ProcessOrder(workerId int, orderChannel chan *Order, stockMap map[string][2]float64) {
 	defer wg.Done()
 	for order := range orderChannel {
+		amount, _ := Checkout(order.Items, stockMap)
+		order.Amount = amount
 		if order.Amount == -1 {
-			fmt.Printf("[Worker-%d] Processing Order %d ....  Out of Stock", workerId, order.orderId)
+			fmt.Printf("[Worker-%d] Processing Order %d ....  Out of Stock \n", workerId, order.orderId)
 
 		} else {
 			var paymentStatus string
 			_, err := getPayment()
 			if err != nil {
 				paymentStatus = "Payment Failed"
-				log.Println(err)
+				fmt.Printf("[Worker-%d] Processing Order %d ....  %s \n", workerId, order.orderId, paymentStatus)
 			} else {
 				paymentStatus = "✅ Payment Success"
+				lock.Lock()
 				for _, item := range order.Items {
+
 					arr := stockMap[item]
 					arr[0]--
 					stockMap[item] = arr
 				}
+				lock.Unlock()
+				fmt.Printf("[Worker-%d] Processing Order %d ....  %s \n", workerId, order.orderId, paymentStatus)
+
 			}
-			fmt.Printf("[Worker-%d] Processing Order %d ....  %s \n", workerId, order.orderId, paymentStatus)
 		}
 	}
 
@@ -44,6 +51,8 @@ func ProcessOrder(workerId int, orderChannel chan Order, stockMap map[string][2]
 }
 
 func Checkout(items []string, stockMap map[string][2]float64) (float64, error) {
+	lock.RLock()
+	defer lock.RUnlock()
 	var bill float64
 	for _, item := range items {
 		if stockMap[item][0] <= 0 {
@@ -84,9 +93,9 @@ func main() {
 		"Phone":   {1.00, 60.00},
 	}
 
-	orderChannel := make(chan Order)
+	orderChannel := make(chan *Order)
 
-	for i := range 10 {
+	for i := range 3 {
 		wg.Add(1)
 		go ProcessOrder(i, orderChannel, stockMap)
 	}
@@ -101,7 +110,7 @@ func main() {
 	}
 
 	for i := 0; i < 4; i++ {
-		orderChannel <- orders[i]
+		orderChannel <- &orders[i]
 	}
 
 	close(orderChannel)
